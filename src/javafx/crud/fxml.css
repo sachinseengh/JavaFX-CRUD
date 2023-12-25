@@ -1,0 +1,49 @@
+/*
+ * Empty Stylesheet file.
+ */
+.textField{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: linear-gradient(to bottom right,#3a4f93,#a43189);
+    -fx-border-radius: 5px;
+    -fx-font-size:15px;
+    
+}
+
+.insert-button{
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+    -fx-font-size:15px;
+    -fx-text-fill:#3a4f93;
+}
+.insert-button:hover{
+    -fx-background-color: #cfc5c5;
+}
+
+
+.button-design{
+    -fx-background-color: #353633;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-text-fill: #edefea;
+}
+.button-design:hover{
+    
+    -fx-background-color: #1674ae;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-text-fill: #edefea;
+}
+
+.button-delete{
+    -fx-background-color: #ff6666;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-text-fill: #edefea;
+}
+.button-delete:hover{
+    -fx-background-color: #ff0033;
+    -fx-background-radius: 15px;
+    -fx-cursor: hand;
+    -fx-text-fill: #edefea;
+}
