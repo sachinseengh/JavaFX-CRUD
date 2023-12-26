@@ -27,9 +27,7 @@ public class JavaFXCRUD extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("FXML.fxml"));
         
-        
-        
-        
+              
         Scene scene = new Scene(root);
         
         primaryStage.setTitle("Crud Operation");

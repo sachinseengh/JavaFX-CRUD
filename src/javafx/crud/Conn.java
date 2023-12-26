@@ -14,7 +14,7 @@ public class Conn {
        
        c= DriverManager.getConnection("jdbc:mysql://localhost/CRUDOperation","root","");
        s=c.createStatement();
-       System.out.println(s);
+//       System.out.println(s);
 
     }catch(Exception e){
         System.out.println(e);

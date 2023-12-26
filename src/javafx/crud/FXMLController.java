@@ -4,6 +4,7 @@
  */
 package javafx.crud;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,11 @@ import javafx.scene.image.ImageView;
 import java.sql.*;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 
 public class FXMLController implements Initializable {
@@ -55,7 +61,7 @@ public class FXMLController implements Initializable {
     private Label file_path;
 
     @FXML
-    private ComboBox<?> gender;
+    private ComboBox<String> gender;
 
     @FXML
     private TextField given;
@@ -80,22 +86,33 @@ public class FXMLController implements Initializable {
 
     @FXML
     private Button update;
+    
+    
+    @FXML
+    private AnchorPane left_main;
 
     private String[] combogender={"Male","Female","Others"};
     
     
     public void comboBox(){
     
-    List<String> list = new ArrayList<>();
+//    List<String> list = new ArrayList<>();
+//    
+//    for(String data: combogender){
+//        list.add(data);
+//    }
+//    
+//    ObservableList datalist = FXCollections.observableArrayList(list);
+//    gender.setItems(datalist);;
+
+gender.getItems().addAll(combogender);
+   
     
-    for(String data: combogender){
-        list.add(data);
     }
     
-    ObservableList datalist = FXCollections.observableArrayList(list);
-    gender.setItems(datalist);
+
     
-    }
+    
     
     
     public void textFieldDesign(){
@@ -128,6 +145,99 @@ public class FXMLController implements Initializable {
     public void defaultId(){
          id.setStyle("-fx-border-width:2px; -fx-background-color:#fff");
     }
+//    -------------------------for Adding Image---------------
+    
+   
+    
+    public void insertImage(){
+        
+        FileChooser open = new FileChooser();
+        
+        Stage stage =(Stage) left_main.getScene().getWindow();
+        
+        File file = open.showOpenDialog(stage);
+        
+        if(file != null){
+            
+            String path = file.getAbsolutePath();
+            
+            path = path.replace("\\", "\\\\");
+            file_path.setText(path);
+            
+
+            
+            //                                                  FILE PATH , WIDTH ,HEIGHT ,RATION,SMOOTH
+            
+            Image image = new Image(file.toURI().toString(),207,114,false,true);
+            image_view.setImage(image);
+            
+            
+        }
+        
+        
+    }
+//    '----------------------------------------Inserting into database---------------------------------------'
+    public void insert(){
+        Conn c = new Conn();
+        
+        String sql = "insert into account (id,surname,given,gender,picture) values('"+id.getText()+"','"+surname.getText()+"',"
+                + "'"+given.getText()+"','"+(String)gender.getSelectionModel().getSelectedItem()+"','"+file_path.getText()+"')";
+        
+        
+        try{
+            
+            c.s.executeUpdate(sql);
+            showData();
+            
+        }catch(Exception e){
+            
+        }
+    }
+//    ---------------------------------------------Inserting into database-------------------------------------------
+    
+    
+    public void selectData(){
+    
+    Data data = table_view.getSelectionModel().getSelectedItem();
+    
+    int num = table_view.getSelectionModel().getSelectedIndex();
+    
+    if((num-1) < -1)
+        return;
+    
+    
+    id.setText(String.valueOf(data.getId()));
+    surname.setText(String.valueOf(data.getSurname()));
+    given.setText(String.valueOf(data.getGiven()));
+    
+//   System.out.println(data.getGender());
+ gender.setValue(data.getGender());
+   
+ 
+//System.out.print(data.getGender().getClass().getSimpleName());
+
+   
+    String picture ="file:"+data.getPicture();
+        
+    Image image = new Image(picture,207,114,false,true);
+    
+    image_view.setImage(image);
+    String path = data.getPicture();
+      path = path.replace("\\", "\\\\");
+    file_path.setText(path);
+    
+    
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//    -------------------------For Table Data-----------------------------------
     
     public ObservableList<Data> dataList(){
         Conn conn= new Conn();
@@ -166,6 +276,7 @@ public class FXMLController implements Initializable {
         
         table_view.setItems(showList);
     }
+//    -------------------------------for Table data--------------------------------
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -174,9 +285,11 @@ public class FXMLController implements Initializable {
 //        For calling Combox box
 
         comboBox();
+
         defaultId();
        
         showData();
+
         
     }    
     
