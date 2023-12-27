@@ -178,6 +178,20 @@ gender.getItems().addAll(combogender);
     }
 //    '----------------------------------------Inserting into database---------------------------------------'
     public void insert(){
+        
+        
+        
+        
+        if(id.getText().isEmpty() || surname.getText().isEmpty() || given.getText().isEmpty()
+                   ||gender.getSelectionModel().isEmpty() || image_view.getImage()==null){
+               
+               Alert alert = new Alert(AlertType.ERROR);
+               
+               alert.setTitle("Error Message");
+               alert.setHeaderText(null);
+               alert.setContentText("Fill all the Blank fields");
+               alert.showAndWait();
+           }else{
         Conn c = new Conn();
         
         String sql = "insert into account (id,surname,given,gender,picture) values('"+id.getText()+"','"+surname.getText()+"',"
@@ -191,6 +205,7 @@ gender.getItems().addAll(combogender);
             
         }catch(Exception e){
             
+        }
         }
     }
 //    ---------------------------------------------Inserting into database-------------------------------------------
