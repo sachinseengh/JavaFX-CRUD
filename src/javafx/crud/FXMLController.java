@@ -20,6 +20,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.sql.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -229,7 +231,53 @@ gender.getItems().addAll(combogender);
     
     }
     
+//   ----------------Closing Select Data---------------------------------------------------------------------------------//
     
+    
+    
+    
+    //-----------------------------------Update-----------------------------------------------------------------------------
+    public void update(){
+        Conn c= new Conn();
+        String path = file_path.getText();
+        path = path.replace("\\","\\\\");
+        
+           String sql = "update account set surname='"+surname.getText()+"',"
+                   + "given ='"+given.getText()+"',gender='"+gender.getSelectionModel().getSelectedItem()+"', picture='"+path+"' where id ='"+id.getText()+"' ";
+           
+           if(id.getText().isEmpty() || surname.getText().isEmpty() || given.getText().isEmpty()
+                   ||gender.getSelectionModel().isEmpty() || image_view.getImage()==null){
+               
+               Alert alert = new Alert(AlertType.ERROR);
+               
+               alert.setTitle("Error Message");
+               alert.setHeaderText(null);
+               alert.setContentText("Enter all blanks fields!");
+               alert.showAndWait();
+           }
+           
+           try{
+               
+               c.s.executeUpdate(sql);
+               
+               Alert alert = new Alert(AlertType.INFORMATION);
+
+                alert.setTitle("Update message");
+                alert.setHeaderText(null);
+                alert.setContentText("Successfully Update the data!");
+                alert.showAndWait();
+
+               showData();
+//               clear();
+               
+           }catch(Exception e){
+               e.printStackTrace();
+           }
+    }
+    
+    
+    
+
     
     
     
