@@ -298,6 +298,22 @@ gender.getItems().addAll(combogender);
         
 public void delete(){
     
+    
+    
+    
+    
+    
+    
+     if(id.getText().isEmpty() || surname.getText().isEmpty() || given.getText().isEmpty()
+                   ||gender.getSelectionModel().isEmpty() || image_view.getImage()==null){
+               
+               Alert alert = new Alert(AlertType.ERROR);
+               
+               alert.setTitle("Error Message");
+               alert.setHeaderText(null);
+               alert.setContentText("No id or row Selected to Delete data!");
+               alert.showAndWait();
+           }else{
     Conn c  = new Conn();
     
     String sql = "delete from account where id ='"+id.getText()+"'";
@@ -324,6 +340,7 @@ public void delete(){
         }catch(Exception e){
             
         }
+     }
 }
 
     
