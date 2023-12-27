@@ -59,7 +59,7 @@
                   <Button fx:id="delete" layoutX="29.0" layoutY="528.0" mnemonicParsing="false" onAction="#delete" prefHeight="48.0" prefWidth="106.0" styleClass="button-delete" stylesheets="@fxml.css" text="Delete" />
                   <Button fx:id="update" layoutX="148.0" layoutY="455.0" mnemonicParsing="false" onAction="#update" prefHeight="48.0" prefWidth="106.0" styleClass="button-design" stylesheets="@fxml.css" text="Update" />
                   <Button fx:id="clear" layoutX="278.0" layoutY="455.0" mnemonicParsing="false" onAction="#clear" prefHeight="48.0" prefWidth="106.0" styleClass="button-design" stylesheets="@fxml.css" text="clear" />
-                  <Button fx:id="print" layoutX="278.0" layoutY="528.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="106.0" styleClass="button-design" stylesheets="@fxml.css" text="Print" />
+                  <Button fx:id="print" layoutX="278.0" layoutY="528.0" mnemonicParsing="false" onAction="#print" prefHeight="48.0" prefWidth="106.0" styleClass="button-design" stylesheets="@fxml.css" text="Print" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="398.0" layoutY="2.0" prefHeight="600.0" prefWidth="403.0">

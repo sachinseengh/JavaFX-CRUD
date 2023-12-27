@@ -202,6 +202,7 @@ gender.getItems().addAll(combogender);
             
             c.s.executeUpdate(sql);
             showData();
+            clear();
             
         }catch(Exception e){
             
@@ -362,7 +363,18 @@ public void delete(){
 //    --------------------------------Closing Delete----------------------------//
     
     
+//    -----------------------------Report-----------------------------------------
+//We need jar files
+
+public void print(){
+    Alert alert = new Alert(AlertType.INFORMATION);
     
+    alert.setTitle("Print");
+    alert.setHeaderText(null);
+    alert.setContentText("Print function is not Currently Working");
+//    alert.showAndWait();
+alert.show();
+}
     
     
 //    -------------------------For Table Data-----------------------------------
