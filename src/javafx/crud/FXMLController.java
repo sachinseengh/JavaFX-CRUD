@@ -20,8 +20,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.sql.*;
+import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -221,7 +223,7 @@ gender.getItems().addAll(combogender);
     
     image_view.setImage(image);
     String path = data.getPicture();
-      path = path.replace("\\", "\\\\");
+//      path = path.replace("\\", "\\\\");
     file_path.setText(path);
     
     
@@ -290,10 +292,42 @@ gender.getItems().addAll(combogender);
     
 //   -------------------------------------     Closing clear -------------------------------------------------------------    
     
+
+        
+//--------------------------------------------Delete -----------------------------------------------------------------
+        
+public void delete(){
     
+    Conn c  = new Conn();
+    
+    String sql = "delete from account where id ='"+id.getText()+"'";
+    
+    try{
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    
+    alert.setTitle("Confimation");
+    alert.setHeaderText(null);
+    alert.setContentText("Are you sure that you want to delete it");
+    
+    Optional<ButtonType> buttonType = alert.showAndWait();
+    
+    
+    if(buttonType.get() == ButtonType.OK){
+        c.s.executeUpdate(sql);
+        
+    }else{
+        return;
+    }
+    showData();
+    clear();
+    
+        }catch(Exception e){
+            
+        }
+}
 
     
-    
+//    --------------------------------Closing Delete----------------------------//
     
     
     
