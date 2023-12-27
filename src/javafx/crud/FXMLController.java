@@ -112,11 +112,7 @@ gender.getItems().addAll(combogender);
     
     }
     
-
-    
-    
-    
-    
+  
     public void textFieldDesign(){
         
         if(id.isFocused()){
@@ -268,13 +264,31 @@ gender.getItems().addAll(combogender);
                 alert.showAndWait();
 
                showData();
-//               clear();
+               clear();
                
            }catch(Exception e){
                e.printStackTrace();
            }
     }
+//    --------------------------------------------Closing Update --------------------------------------------------------//
     
+    
+//    ---------------------------------------------Clear ------------------------------------------------------------------//
+        public void clear(){
+    
+    
+    id.setText("");
+    surname.setText("");
+    given.setText("");
+    gender.getSelectionModel().clearSelection();
+    
+    image_view.setImage(null);
+    file_path.setText("");
+    
+    
+    }
+    
+//   -------------------------------------     Closing clear -------------------------------------------------------------    
     
     
 
